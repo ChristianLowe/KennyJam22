@@ -1,6 +1,6 @@
 extends Area2D
 
-var health = 15
+var health = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,8 +29,19 @@ func pop():
 	var pet = pet_scene.instance()
 	pet.position = position
 	get_parent().add_child(pet)
+	
+	var egg_shard_scene = load("res://Actors/EggShard.tscn")
+	spawn_shard(egg_shard_scene, 1, 40, -650, .5)
+	spawn_shard(egg_shard_scene, 2, 700, -350, 3.5)
+	spawn_shard(egg_shard_scene, 3, -620, -240, -3.3)
+	
 	queue_free()
 	
+func spawn_shard(scene, shard_num, h_speed, v_speed, r_speed):
+	var shard = scene.instance()
+	shard.position = position
+	shard.init(shard_num, h_speed, v_speed, r_speed)
+	get_parent().add_child(shard)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
