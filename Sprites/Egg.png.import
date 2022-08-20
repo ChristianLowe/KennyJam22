@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/body_whiteC.png-0b8fd68f86594a5792b8311ae3dc5e64.stex"
+path="res://.import/Egg.png-605df0c3db21b0ee1d1d6dce266558e6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/body_whiteC.png"
-dest_files=[ "res://.import/body_whiteC.png-0b8fd68f86594a5792b8311ae3dc5e64.stex" ]
+source_file="res://Sprites/Egg.png"
+dest_files=[ "res://.import/Egg.png-605df0c3db21b0ee1d1d6dce266558e6.stex" ]
 
 [params]
 
