@@ -12,13 +12,6 @@ export var shake_amount = 5.0
 
 var sway_direction_amount = [-sway_amount, sway_amount]
 
-#func _ready():
-#	$SquishTween.connect("tween_all_completed", self, "unsquish")
-#	$UnsquishTween.connect("tween_all_completed", self, "squish")
-#	$SwayTween.connect("tween_completed", self, "_on_sway_tween_completed")
-	
-#	sway()
-
 func sway() -> void:
 	$SwayTween.interpolate_property(
 		$Sprite,
@@ -31,11 +24,6 @@ func sway() -> void:
 		0.05
 	)
 	$SwayTween.start()
-	
-func _on_sway_tween_completed(object, key) -> void:
-	# Sway back the other way.
-	sway_direction_amount.invert()
-	sway()
 
 func stop_sway() -> void:
 	$SwayTween.stop_all()
@@ -179,9 +167,20 @@ func jump(jump_height: float = 300.0) -> void:
 	squish()
 
 func _input(event):
-	# This event handler is just for testing using the SPACE BAR.
-	if event.is_action_pressed("ui_accept"):
-		jump()
+	# This event handler is just for testing using keys.
+	if event.is_pressed() and event is InputEventKey:
+		match event.scancode:
+			KEY_1:
+				jump()
+			KEY_2:
+				sway()
+				yield($SwayTween,"tween_all_completed")
+				sway_direction_amount.invert()
+				sway()
+				yield($SwayTween,"tween_all_completed")
+				stop_sway()
+			KEY_3:
+				shake()
 
 func _process(delta):
 	pass
