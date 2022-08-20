@@ -21,12 +21,13 @@ export var sway_amount = 10.0
 export var shake_amount = 5.0
 
 var sway_direction_amount = [-sway_amount, sway_amount]
-var level: int = 1
+var level: int = 0
 var status: int = Status.Content
 
 var sprite_frames_resources = [
 	"res://Resources/Pet0SpriteFrames.tres",
-	"res://Resources/Pet1SpriteFrames.tres"
+	"res://Resources/Pet1SpriteFrames.tres",
+	"res://Resources/Pet2SpriteFrames.tres"
 ]
 
 func evolve(new_level: int) -> void:
@@ -224,9 +225,7 @@ func _input(event):
 			KEY_3:
 				shake()
 			KEY_4:
-				evolve(0)
-			KEY_5:
-				evolve(1)
+				evolve((level+1)%3)
 			KEY_6:
 				set_status(Status.Content)
 			KEY_7:
@@ -265,7 +264,6 @@ func set_status(new_status: int) -> void:
 	
 	if new_status != Status.Content:
 		add_child(pet_status_icon_scene)
-		print(pet_status_icon_scene.name)
 		pet_status_icon_scene.set_position(Vector2(120.0, -100.0))
 		pet_status_icon_scene.float_up_and_down()
 				
