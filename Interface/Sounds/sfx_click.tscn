@@ -2,5 +2,5 @@
 
 [ext_resource path="res://Interface/Sounds/Resources/click2.ogg" type="AudioStream" id=1]
 
-[node name="sfx-click" type="AudioStreamPlayer"]
+[node name="sfx_click" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )

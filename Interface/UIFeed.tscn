@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Backgrounds/BackgroundDesert.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/Resources/UIpack_vector.svg" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 211, 120, 190, 49 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 421, 124, 190, 45 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 631, 120, 190, 49 )
+
+[node name="Control" type="Control"]
+anchor_right = 0.597
+anchor_bottom = 1.0
+margin_right = -0.328003
+
+[node name="Background" type="CanvasLayer" parent="."]
+
+[node name="BackgroundDesert" parent="Background" instance=ExtResource( 1 )]
+position = Vector2( 306, 300 )
+scale = Vector2( 1.19141, 1.17188 )
+
+[node name="Buttons" type="CanvasLayer" parent="."]
+
+[node name="BackButton" type="TextureButton" parent="Buttons"]
+margin_left = 16.0
+margin_top = 11.0
+margin_right = 206.0
+margin_bottom = 60.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 2 )
+texture_hover = SubResource( 3 )
+
+[node name="Label" type="Label" parent="Buttons/BackButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 56.0
+margin_top = 5.33333
+margin_right = -95.0
+margin_bottom = -24.6667
+rect_scale = Vector2( 2, 2 )
+text = "Back"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="FeedButton" type="TextureButton" parent="Buttons"]
+margin_left = 450.0
+margin_top = 11.0
+margin_right = 640.0
+margin_bottom = 60.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 2 )
+texture_hover = SubResource( 3 )
+
+[node name="Label" type="Label" parent="Buttons/FeedButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 56.0
+margin_top = 5.33333
+margin_right = -95.0
+margin_bottom = -24.6667
+rect_scale = Vector2( 2, 2 )
+text = "Feed"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="PetZone" type="CanvasLayer" parent="."]
