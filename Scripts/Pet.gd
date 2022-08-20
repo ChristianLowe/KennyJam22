@@ -8,14 +8,14 @@ var drive = {
 }
 
 func _ready():
-	$GrowTween.connect("tween_all_completed", self, "shrink")
-	$ShrinkTween.connect("tween_all_completed", self, "grow")
+	$SquishTween.connect("tween_all_completed", self, "unsquish")
+	$UnsquishTween.connect("tween_all_completed", self, "squish")
 	
-	grow()
+	squish()
 
-func grow() -> void:
+func squish() -> void:
 	var normal_scale = $Sprite.scale
-	$GrowTween.interpolate_property(
+	$SquishTween.interpolate_property(
 		$Sprite,
 		"scale:y",
 		normal_scale.y,
@@ -25,7 +25,7 @@ func grow() -> void:
 		Tween.EASE_OUT
 	)
 	
-	$GrowTween.interpolate_property(
+	$SquishTween.interpolate_property(
 		$Sprite,
 		"scale:x",
 		normal_scale.x,
@@ -34,11 +34,11 @@ func grow() -> void:
 		Tween.TRANS_ELASTIC,
 		Tween.EASE_OUT
 	)
-	$GrowTween.start()
+	$SquishTween.start()
 
-func shrink() -> void:
+func unsquish() -> void:
 	var normal_scale = $Sprite.scale
-	$ShrinkTween.interpolate_property(
+	$UnsquishTween.interpolate_property(
 		$Sprite,
 		"scale:y",
 		normal_scale.y,
@@ -47,7 +47,7 @@ func shrink() -> void:
 		Tween.TRANS_SINE,
 		Tween.EASE_OUT
 	)
-	$ShrinkTween.interpolate_property(
+	$UnsquishTween.interpolate_property(
 		$Sprite,
 		"scale:x",
 		normal_scale.x,
@@ -56,7 +56,7 @@ func shrink() -> void:
 		Tween.TRANS_SINE,
 		Tween.EASE_OUT
 	)
-	$ShrinkTween.start()
+	$UnsquishTween.start()
 
 
 func _process(delta):
