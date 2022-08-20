@@ -11,6 +11,17 @@ export var sway_amount = 20.0
 export var shake_amount = 5.0
 
 var sway_direction_amount = [-sway_amount, sway_amount]
+var level: int = 1
+
+var sprite_frames_resources = [
+	"res://Resources/Pet0SpriteFrames.tres",
+	"res://Resources/Pet1SpriteFrames.tres"
+]
+
+func evolve(new_level: int) -> void:
+	level = new_level
+	var sprite_frames: SpriteFrames = load(sprite_frames_resources[new_level])
+	$Sprite.set_sprite_frames(sprite_frames)
 
 func sway() -> void:
 	$SwayTween.interpolate_property(
@@ -181,6 +192,10 @@ func _input(event):
 				stop_sway()
 			KEY_3:
 				shake()
+			KEY_4:
+				evolve(0)
+			KEY_5:
+				evolve(1)
 
 func _process(delta):
 	pass
