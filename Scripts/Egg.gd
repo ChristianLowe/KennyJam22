@@ -35,6 +35,7 @@ func pop():
 	spawn_shard(egg_shard_scene, 2, 700, -350, 3.5)
 	spawn_shard(egg_shard_scene, 3, -620, -240, -3.3)
 	
+	pet.jump()
 	queue_free()
 	
 func spawn_shard(scene, shard_num, h_speed, v_speed, r_speed):

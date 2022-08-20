@@ -8,11 +8,25 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "AnimatedSprite",
+"class": "PetStatusIcon",
+"language": "GDScript",
+"path": "res://Scripts/PetStatusIcon.gd"
+} ]
+_global_script_class_icons={
+"PetStatusIcon": ""
+}
+
 [application]
 
 config/name="Yamogucci"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=616
 
 [global]
 
@@ -20,8 +34,8 @@ font=false
 
 [gui]
 
-common/drop_mouse_on_gui_input_disabled=true
 theme/custom_font="res://Fonts/Kenney Mini.tres"
+common/drop_mouse_on_gui_input_disabled=true
 
 [physics]
 

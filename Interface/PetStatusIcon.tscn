@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/PetStatus.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/PetStatusIcon.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Statuses/status_sleepy.svg" type="Texture" id=2]
 [ext_resource path="res://Sprites/Statuses/status_pet.svg" type="Texture" id=3]
 [ext_resource path="res://Sprites/Statuses/status_bored.svg" type="Texture" id=4]
@@ -35,13 +35,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="PetStatus" type="AnimatedSprite"]
-position = Vector2( 384, 232 )
+[node name="PetStatusIcon" type="AnimatedSprite"]
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "hungry"
 script = ExtResource( 1 )
 
-[node name="StatusBackground" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 show_behind_parent = true
 texture = ExtResource( 6 )
 

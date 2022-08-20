@@ -30,3 +30,5 @@ shape = SubResource( 1 )
 [node name="JumpTween" type="Tween" parent="."]
 
 [node name="FallTween" type="Tween" parent="."]
+
+[node name="MoveTween" type="Tween" parent="."]

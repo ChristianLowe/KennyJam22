@@ -1,5 +1,15 @@
 extends Area2D
 
+signal jumped
+
+enum Status { 
+	Content,
+	Bored,
+	Hungry,
+	NeedsAttention,
+	Sleepy
+}
+
 var drive = {
 	"hunger": 100.0,
 	"thirst": 100.0,
@@ -7,11 +17,12 @@ var drive = {
 	"boring": 100.0,
 }
 
-export var sway_amount = 20.0
+export var sway_amount = 10.0
 export var shake_amount = 5.0
 
 var sway_direction_amount = [-sway_amount, sway_amount]
 var level: int = 1
+var status: int = Status.Content
 
 var sprite_frames_resources = [
 	"res://Resources/Pet0SpriteFrames.tres",
@@ -148,7 +159,7 @@ func straighten() -> void:
 	)
 	$StraightenTween.start()
 	
-func jump(jump_height: float = 300.0) -> void:
+func jump(jump_height: float = 300.0, move: bool = false) -> void:
 	squish()
 	yield($SquishTween,"tween_all_completed")
 	$JumpTween.interpolate_property(
@@ -161,6 +172,7 @@ func jump(jump_height: float = 300.0) -> void:
 		Tween.EASE_OUT
 	)
 	$JumpTween.start()
+	move()
 	stretch()
 	yield($StretchTween,"tween_all_completed")
 	shake()
@@ -177,12 +189,31 @@ func jump(jump_height: float = 300.0) -> void:
 	yield($FallTween,"tween_all_completed")
 	squish()
 
+func move(move_distance: float = 96.0) -> void:
+	var sprite_texture_size_x: float = 24.0
+	var move_to_position_x: float = clamp(
+		position.x + rand_range(-move_distance, move_distance),
+		0.0,
+		get_viewport().size.x+sprite_texture_size_x
+	)
+	
+	$MoveTween.interpolate_property(
+		self,
+		"position:x",
+		position.x,
+		move_to_position_x,
+		0.75,
+		Tween.TRANS_SINE,
+		Tween.EASE_OUT
+	)
+	$MoveTween.start()
+
 func _input(event):
 	# This event handler is just for testing using keys.
 	if event.is_pressed() and event is InputEventKey:
 		match event.scancode:
 			KEY_1:
-				jump()
+				jump(250.0, true)
 			KEY_2:
 				sway()
 				yield($SwayTween,"tween_all_completed")
@@ -196,6 +227,49 @@ func _input(event):
 				evolve(0)
 			KEY_5:
 				evolve(1)
+			KEY_6:
+				set_status(Status.Content)
+			KEY_7:
+				set_status(Status.Bored)
+			KEY_8:
+				set_status(Status.Hungry)
+			KEY_9:
+				set_status(Status.NeedsAttention)
+			KEY_0:
+				set_status(Status.Sleepy)
+
+func remove_status_icons() -> void:
+	for child in get_children():
+		if child is PetStatusIcon:
+			child.queue_free()
+
+func set_status(new_status: int) -> void:
+	remove_status_icons()
+		
+	var pet_status_icon_scene = load("res://Interface/PetStatusIcon.tscn").instance()
+	
+	match new_status:
+		Status.Content:
+			$Sprite.set_animation("default")
+		Status.Bored:
+			pet_status_icon_scene.set_animation("bored")
+			$Sprite.set_animation("bored")
+		Status.Hungry:
+			pet_status_icon_scene.set_animation("hungry")
+			$Sprite.set_animation("hungry")
+		Status.NeedsAttention:
+			pet_status_icon_scene.set_animation("pet")
+		Status.Sleepy:
+			pet_status_icon_scene.set_animation("sleepy")
+			$Sprite.set_animation("sleepy")
+	
+	if new_status != Status.Content:
+		add_child(pet_status_icon_scene)
+		print(pet_status_icon_scene.name)
+		pet_status_icon_scene.set_position(Vector2(120.0, -100.0))
+		pet_status_icon_scene.float_up_and_down()
+				
+	status = new_status
 
 func _process(delta):
 	pass

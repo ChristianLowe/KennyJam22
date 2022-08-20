@@ -1,4 +1,5 @@
 extends AnimatedSprite
+class_name PetStatusIcon
 
 enum FloatDirection {
 	Up,
@@ -11,10 +12,8 @@ var float_direction: int = FloatDirection.Up
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$FloatTween.connect("tween_completed", self, "_on_float_tween_completed")
-	float_up_and_down()
 
 func float_up_and_down() -> void:
-	
 	$FloatTween.interpolate_property(
 		self,
 		"position:y",
@@ -26,7 +25,7 @@ func float_up_and_down() -> void:
 	)
 	
 	$FloatTween.start()
-	
+
 func _on_float_tween_completed(object, key):
 	float_direction = not float_direction
 	float_up_and_down()
