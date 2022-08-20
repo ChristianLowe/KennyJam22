@@ -13,3 +13,4 @@ position = Vector2( 479, 282 )
 position = Vector2( 224, 472 )
 
 [node name="PetStatus" parent="." instance=ExtResource( 3 )]
+animation = "sleepy"

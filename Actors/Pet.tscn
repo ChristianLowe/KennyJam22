@@ -37,6 +37,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
+animation = "hungry"
 
 [node name="Area2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
