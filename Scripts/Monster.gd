@@ -1,0 +1,54 @@
+extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$GrowTween.connect("tween_all_completed", self, "shrink")
+	$ShrinkTween.connect("tween_all_completed", self, "grow")
+	
+	grow()
+
+func grow() -> void:
+	var normal_scale = $AnimatedSprite.scale
+	$GrowTween.interpolate_property(
+		$AnimatedSprite,
+		"scale:y",
+		normal_scale.y,
+		normal_scale.y/1.5,
+		0.5,
+		Tween.TRANS_ELASTIC,
+		Tween.EASE_OUT
+	)
+	
+	$GrowTween.interpolate_property(
+		$AnimatedSprite,
+		"scale:x",
+		normal_scale.x,
+		normal_scale.x*1.5,
+		0.5,
+		Tween.TRANS_ELASTIC,
+		Tween.EASE_OUT
+	)
+	$GrowTween.start()
+
+func shrink() -> void:
+	var normal_scale = $AnimatedSprite.scale
+	$ShrinkTween.interpolate_property(
+		$AnimatedSprite,
+		"scale:y",
+		normal_scale.y,
+		normal_scale.y*1.5,
+		0.5,
+		Tween.TRANS_SINE,
+		Tween.EASE_OUT
+	)
+	$ShrinkTween.interpolate_property(
+		$AnimatedSprite,
+		"scale:x",
+		normal_scale.x,
+		normal_scale.x/1.5,
+		0.5,
+		Tween.TRANS_SINE,
+		Tween.EASE_OUT
+	)
+	$ShrinkTween.start()
