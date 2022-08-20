@@ -12,12 +12,12 @@ export var shake_amount = 5.0
 
 var sway_direction_amount = [-sway_amount, sway_amount]
 
-func _ready():
-	$SquishTween.connect("tween_all_completed", self, "unsquish")
-	$UnsquishTween.connect("tween_all_completed", self, "squish")
-	$SwayTween.connect("tween_completed", self, "_on_sway_tween_completed")
+#func _ready():
+#	$SquishTween.connect("tween_all_completed", self, "unsquish")
+#	$UnsquishTween.connect("tween_all_completed", self, "squish")
+#	$SwayTween.connect("tween_completed", self, "_on_sway_tween_completed")
 	
-	sway()
+#	sway()
 
 func sway() -> void:
 	$SwayTween.interpolate_property(
@@ -104,14 +104,84 @@ func unsquish() -> void:
 		Tween.EASE_OUT
 	)
 	$UnsquishTween.start()
+	
+func stretch() -> void:
+	var normal_scale = $Sprite.scale
+	$StretchTween.interpolate_property(
+		$Sprite,
+		"scale:y",
+		normal_scale.y,
+		1.25,
+		0.5,
+		Tween.TRANS_SINE,
+		Tween.EASE_OUT
+	)
+	$StretchTween.interpolate_property(
+		$Sprite,
+		"scale:x",
+		normal_scale.x,
+		0.5,
+		0.5,
+		Tween.TRANS_SINE,
+		Tween.EASE_OUT
+	)
+	$StretchTween.start()
+	
+func straighten() -> void:
+	var normal_scale = $Sprite.scale
+	$StraightenTween.interpolate_property(
+		$Sprite,
+		"scale:y",
+		normal_scale.y,
+		1.0,
+		0.25,
+		Tween.TRANS_SINE,
+		Tween.EASE_OUT
+	)
+	$StraightenTween.interpolate_property(
+		$Sprite,
+		"scale:x",
+		normal_scale.x,
+		1.0,
+		0.25,
+		Tween.TRANS_SINE,
+		Tween.EASE_OUT
+	)
+	$StraightenTween.start()
+	
+func jump(jump_height: float = 300.0) -> void:
+	squish()
+	yield($SquishTween,"tween_all_completed")
+	$JumpTween.interpolate_property(
+		$Sprite,
+		"position:y",
+		$Sprite.position.y,
+		$Sprite.position.y-jump_height,
+		0.75,
+		Tween.TRANS_QUINT,
+		Tween.EASE_OUT
+	)
+	$JumpTween.start()
+	stretch()
+	yield($StretchTween,"tween_all_completed")
+	shake()
+	$FallTween.interpolate_property(
+		$Sprite,
+		"position:y",
+		$Sprite.position.y,
+		$Sprite.position.y+jump_height,
+		0.25,
+		Tween.TRANS_SINE,
+		Tween.EASE_IN
+	)
+	$FallTween.start()
+	yield($FallTween,"tween_all_completed")
+	squish()
 
 func _input(event):
 	# This event handler is just for testing using the SPACE BAR.
 	if event.is_action_pressed("ui_accept"):
-		if $SwayTween.is_active():
-			stop_sway()
-		else:
-			sway()
+		jump()
 
 func _process(delta):
 	pass

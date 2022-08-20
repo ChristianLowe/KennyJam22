@@ -45,6 +45,14 @@ shape = SubResource( 1 )
 
 [node name="UnsquishTween" type="Tween" parent="."]
 
+[node name="StretchTween" type="Tween" parent="."]
+
+[node name="StraightenTween" type="Tween" parent="."]
+
 [node name="SwayTween" type="Tween" parent="."]
 
 [node name="ShakeTween" type="Tween" parent="."]
+
+[node name="JumpTween" type="Tween" parent="."]
+
+[node name="FallTween" type="Tween" parent="."]
