@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/overview.svg-10a82ad3a3442ee9a29df16139871a24.stex"
+path="res://.import/vector_backgrounds.svg-3bc66fb62f0aeca43b9401890883a711.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Interface/overview.svg"
-dest_files=[ "res://.import/overview.svg-10a82ad3a3442ee9a29df16139871a24.stex" ]
+source_file="res://Backgrounds/Resources/vector_backgrounds.svg"
+dest_files=[ "res://.import/vector_backgrounds.svg-3bc66fb62f0aeca43b9401890883a711.stex" ]
 
 [params]
 
