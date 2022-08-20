@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Backgrounds/BackgroundDesert.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Interface/Resources/overview.svg" type="Texture" id=2]
 [ext_resource path="res://Sprites/Statuses/status_pet.svg" type="Texture" id=3]
+[ext_resource path="res://Scripts/ButtonBar.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=6]
 border_color = Color( 0.356863, 0.356863, 0.356863, 0 )
@@ -48,7 +49,11 @@ margin_right = 308.0
 margin_bottom = 300.0
 mouse_filter = 2
 
-[node name="ButtonFeedBackground" type="Panel" parent="."]
+[node name="ButtonBar" type="Node2D" parent="."]
+position = Vector2( 0, 64 )
+script = ExtResource( 4 )
+
+[node name="ButtonFeedBackground" type="Panel" parent="ButtonBar"]
 margin_left = 51.0
 margin_top = 544.0
 margin_right = 91.0
@@ -57,14 +62,14 @@ hint_tooltip = "Give Food"
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
 
-[node name="ButtonFeed" type="TextureButton" parent="ButtonFeedBackground"]
+[node name="ButtonFeed" type="TextureButton" parent="ButtonBar/ButtonFeedBackground"]
 margin_right = 55.0
 margin_bottom = 52.0
 rect_scale = Vector2( 0.75, 0.75 )
 texture_normal = SubResource( 2 )
 stretch_mode = 2
 
-[node name="ButtonDrinkBackground" type="Panel" parent="."]
+[node name="ButtonDrinkBackground" type="Panel" parent="ButtonBar"]
 margin_left = 162.0
 margin_top = 544.0
 margin_right = 202.0
@@ -75,7 +80,7 @@ __meta__ = {
 "_editor_description_": "Give Water"
 }
 
-[node name="ButtonDrink" type="TextureButton" parent="ButtonDrinkBackground"]
+[node name="ButtonDrink" type="TextureButton" parent="ButtonBar/ButtonDrinkBackground"]
 margin_left = -2.0
 margin_top = -4.0
 margin_right = 38.0
@@ -83,7 +88,7 @@ margin_bottom = 36.0
 rect_scale = Vector2( 0.75, 0.75 )
 texture_normal = SubResource( 3 )
 
-[node name="ButtonPlayBackground" type="Panel" parent="."]
+[node name="ButtonPlayBackground" type="Panel" parent="ButtonBar"]
 margin_left = 424.0
 margin_top = 543.0
 margin_right = 464.0
@@ -94,7 +99,7 @@ __meta__ = {
 "_editor_description_": "Play"
 }
 
-[node name="ButtonPlay" type="TextureButton" parent="ButtonPlayBackground"]
+[node name="ButtonPlay" type="TextureButton" parent="ButtonBar/ButtonPlayBackground"]
 margin_left = -4.0
 margin_top = -4.0
 margin_right = 60.0
@@ -103,7 +108,7 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture_normal = SubResource( 4 )
 stretch_mode = 2
 
-[node name="ButtonCleanBackground" type="Panel" parent="."]
+[node name="ButtonCleanBackground" type="Panel" parent="ButtonBar"]
 margin_left = 537.0
 margin_top = 545.0
 margin_right = 577.0
@@ -112,7 +117,7 @@ hint_tooltip = "Clean Pen"
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
 
-[node name="ButtonClean" type="TextureButton" parent="ButtonCleanBackground"]
+[node name="ButtonClean" type="TextureButton" parent="ButtonBar/ButtonCleanBackground"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -125,7 +130,7 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture_normal = SubResource( 5 )
 stretch_mode = 2
 
-[node name="ButtonPetBackground" type="Panel" parent="."]
+[node name="ButtonPetBackground" type="Panel" parent="ButtonBar"]
 margin_left = 285.0
 margin_top = 545.0
 margin_right = 325.0
@@ -134,7 +139,7 @@ hint_tooltip = "Pet"
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
 
-[node name="ButtonPet" type="TextureButton" parent="ButtonPetBackground"]
+[node name="ButtonPet" type="TextureButton" parent="ButtonBar/ButtonPetBackground"]
 margin_left = -45.0
 margin_top = -35.0
 margin_right = 211.0
@@ -142,3 +147,5 @@ margin_bottom = 221.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 3 )
 stretch_mode = 2
+
+[node name="Tween" type="Tween" parent="ButtonBar"]

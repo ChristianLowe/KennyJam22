@@ -12,6 +12,7 @@ func _input_event(viewport, event, shape_idx):
 		health -= 1
 		if health <= 0:
 			pop()
+			get_parent().get_node("UIFeed/ButtonBar").pop_in()
 
 func bounce():
 	var small = Vector2(0.7, 0.7)
