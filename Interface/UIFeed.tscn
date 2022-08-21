@@ -61,14 +61,17 @@ margin_left = 51.0
 margin_top = 544.0
 margin_right = 91.0
 margin_bottom = 584.0
-hint_tooltip = "Give Food"
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="Button" type="TextureButton" parent="ButtonBar/ButtonFeedBackground"]
 margin_right = 55.0
 margin_bottom = 52.0
 rect_scale = Vector2( 0.75, 0.75 )
+hint_tooltip = "Give Food"
 texture_normal = SubResource( 2 )
 stretch_mode = 2
 
@@ -97,7 +100,7 @@ margin_bottom = 584.0
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
 __meta__ = {
-"_editor_description_": "Give Water"
+"_editor_description_": ""
 }
 
 [node name="Button" type="TextureButton" parent="ButtonBar/ButtonDrinkBackground"]
@@ -106,6 +109,7 @@ margin_top = -4.0
 margin_right = 38.0
 margin_bottom = 36.0
 rect_scale = Vector2( 0.75, 0.75 )
+hint_tooltip = "Give Water"
 texture_normal = SubResource( 3 )
 
 [node name="ProgressBar" type="TextureProgress" parent="ButtonBar/ButtonDrinkBackground"]
@@ -133,7 +137,7 @@ margin_bottom = 583.0
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
 __meta__ = {
-"_editor_description_": "Play"
+"_editor_description_": ""
 }
 
 [node name="Button" type="TextureButton" parent="ButtonBar/ButtonPlayBackground"]
@@ -142,6 +146,7 @@ margin_top = -4.0
 margin_right = 60.0
 margin_bottom = 59.0
 rect_scale = Vector2( 0.75, 0.75 )
+hint_tooltip = "Play"
 texture_normal = SubResource( 4 )
 stretch_mode = 2
 
@@ -167,7 +172,6 @@ margin_left = 537.0
 margin_top = 545.0
 margin_right = 577.0
 margin_bottom = 585.0
-hint_tooltip = "Clean Pen"
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
 
@@ -181,6 +185,7 @@ margin_top = -19.0
 margin_right = 37.0
 margin_bottom = 33.0
 rect_scale = Vector2( 0.75, 0.75 )
+hint_tooltip = "Clean Pen"
 texture_normal = SubResource( 5 )
 stretch_mode = 2
 
@@ -206,7 +211,6 @@ margin_left = 285.0
 margin_top = 545.0
 margin_right = 325.0
 margin_bottom = 585.0
-hint_tooltip = "Pet"
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
 
@@ -216,6 +220,7 @@ margin_top = -35.0
 margin_right = 211.0
 margin_bottom = 221.0
 rect_scale = Vector2( 0.5, 0.5 )
+hint_tooltip = "Pet"
 texture_normal = ExtResource( 3 )
 stretch_mode = 2
 
