@@ -11,10 +11,10 @@ enum Status {
 }
 
 var drive = {
-	"hunger": 100.0,
-	"thirst": 100.0,
-	"sleepy": 100.0,
-	"boring": 100.0,
+	"hunger": [100.0, 0.010],
+	"thirst": [100.0, 0.015],
+	"sleepy": [100.0, 0.033],
+	"boring": [100.0, 0.055],
 }
 
 export var sway_amount = 10.0
@@ -295,4 +295,6 @@ func set_status(new_status: int) -> void:
 	status = new_status
 
 func _process(delta):
-	pass
+	for d in drive:
+		drive[d][0] -= drive[d][1] * delta
+		print(d + " " + str(drive[d][0]))
