@@ -32,3 +32,13 @@ shape = SubResource( 1 )
 [node name="FallTween" type="Tween" parent="."]
 
 [node name="MoveTween" type="Tween" parent="."]
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="GrowTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[connection signal="timeout" from="GrowTimer" to="." method="_on_GrowTimer_timeout"]

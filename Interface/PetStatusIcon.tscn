@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/PetStatusIcon.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Statuses/status_sleepy.svg" type="Texture" id=2]
@@ -6,12 +6,19 @@
 [ext_resource path="res://Sprites/Statuses/status_bored.svg" type="Texture" id=4]
 [ext_resource path="res://Sprites/Statuses/status_hungry.svg" type="Texture" id=5]
 [ext_resource path="res://Sprites/Statuses/status_background.svg" type="Texture" id=6]
+[ext_resource path="res://Sprites/Statuses/status_thirsty.svg" type="Texture" id=7]
+[ext_resource path="res://Sprites/Statuses/status_trashy.svg" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [  ],
 "loop": true,
 "name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "all",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -24,21 +31,31 @@ animations = [ {
 "name": "sleepy",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "hungry",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "pet",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "hungry",
+"name": "thirsty",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "trashy",
 "speed": 5.0
 } ]
 
 [node name="PetStatusIcon" type="AnimatedSprite"]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-animation = "hungry"
+animation = "trashy"
 script = ExtResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
