@@ -64,11 +64,6 @@ func _spawn_heart() -> void:
 	var heart = load("res://Actors/Heart.tscn").instance()
 	heart.position = $Sprite.position + Vector2(0, -120)
 	add_child(heart)
-	
-	if randi() % 2 == 0:
-		get_parent().get_node("Audio").play_sfx("happy1")
-	else:
-		get_parent().get_node("Audio").play_sfx("happy2")
 
 func _on_JumpTimer_timeout() -> void:
 	jump(250.0, true)
@@ -110,7 +105,7 @@ func _on_ui_clean_button_pressed() -> void:
 		get_node("PetStatusIcon").queue_free()
 	
 func _on_ui_pet_button_pressed() -> void:
-	_spawn_heart()
+	_spawn_heart()	
 	drive["loving"][0] = min(drive["loving"][0] + love_reward_amount, 100.0)
 	if drive["loving"][0] > drive_threshold and has_node("PetStatusIcon"):
 		get_node("PetStatusIcon").queue_free()
