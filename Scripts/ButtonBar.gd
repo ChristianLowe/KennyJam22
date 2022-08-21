@@ -59,7 +59,7 @@ func _on_ButtonPet_clicked(event):
 	_on_button_clicked(event, 4)
 
 func pop_in():
-	var lowered = Vector2(0, 64)
+	var lowered = Vector2(0, 112)
 	var raised = Vector2(0, 0)
 	$Tween.interpolate_property(
 		self,
