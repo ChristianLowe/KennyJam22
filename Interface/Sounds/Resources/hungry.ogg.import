@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hungry.ogg-b4b711389593219ca4fd63be062c378d.oggstr"
+
+[deps]
+
+source_file="res://Interface/Sounds/Resources/hungry.ogg"
+dest_files=[ "res://.import/hungry.ogg-b4b711389593219ca4fd63be062c378d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

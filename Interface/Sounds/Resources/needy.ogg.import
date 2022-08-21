@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/needy.ogg-1cdc67575056403a7c6764b41d2ed833.oggstr"
+
+[deps]
+
+source_file="res://Interface/Sounds/Resources/needy.ogg"
+dest_files=[ "res://.import/needy.ogg-1cdc67575056403a7c6764b41d2ed833.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
