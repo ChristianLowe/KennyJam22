@@ -1,6 +1,6 @@
 extends Area2D
 
-var health = 5
+var health = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,10 +8,16 @@ func _ready():
 	
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.is_pressed():
+		if randi() % 2 == 0:
+			get_parent().get_node("Audio").play_sfx("click1")
+		else:
+			get_parent().get_node("Audio").play_sfx("click2")
+		
 		bounce()
 		health -= 1
 		if health <= 0:
 			pop()
+			get_parent().get_node("Audio").play_sfx("hatch")
 			get_parent().get_node("UIFeed/ButtonBar").pop_in()
 
 func bounce():

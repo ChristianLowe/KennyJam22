@@ -31,7 +31,7 @@ export var clean_reward_amount: float = 15.0
 export var max_seconds_until_evolve: int = 60.0*10.0
 onready var seconds_until_evolve: int = max_seconds_until_evolve
 
-var drive = {
+onready var drive = {
 	"hunger": [100.0, hunger_drive_delta, Status.Hungry],
 	"thirst": [100.0, thirst_drive_delta, Status.Thirsty],
 	"sleepy": [100.0, sleepy_drive_delta, Status.Sleepy],
@@ -39,6 +39,8 @@ var drive = {
 	"loving": [100.0, loving_drive_delta, Status.NeedsLove],
 	"trashy": [100.0, trashy_drive_delta, Status.Trashy]
 }
+
+onready var evolve_progress_bar: ProgressBar = get_tree().get_root().get_node('Main/EvolveProgressBar')
 
 var drive_threshold: float = 0.75
 
@@ -64,22 +66,21 @@ func _ready() -> void:
 	rng.randomize()
 	modulate = Color(rng.randf_range(0.0,1.0), rng.randf_range(0.0,1.0), rng.randf_range(0.0,1.0))
 
+	evolve_progress_bar.set_max(max_seconds_until_evolve)
+	evolve_progress_bar.set_value(0.0)
+	
 func _spawn_heart() -> void:
 	var heart = load("res://Actors/Heart.tscn").instance()
 	heart.position = $Sprite.position + Vector2(0, -120)
 	add_child(heart)
-	
-	if randi() % 2 == 0:
-		get_parent().get_node("Audio").play_sfx("happy1")
-	else:
-		get_parent().get_node("Audio").play_sfx("happy2")
 
 func _on_JumpTimer_timeout() -> void:
 	jump(250.0, true)
 	
 func _on_GrowTimer_timeout() -> void:
 	seconds_until_evolve -= 1
-	print("seconds_until_evolve %d" % seconds_until_evolve)
+	evolve_progress_bar.set_value(max_seconds_until_evolve-seconds_until_evolve)
+#	print("seconds_until_evolve %d" % seconds_until_evolve)
 	
 	if seconds_until_evolve <= 0:
 		grow(level + 1)
@@ -114,7 +115,7 @@ func _on_ui_clean_button_pressed() -> void:
 		get_node("PetStatusIcon").queue_free()
 	
 func _on_ui_pet_button_pressed() -> void:
-	_spawn_heart()
+	_spawn_heart()	
 	drive["loving"][0] = min(drive["loving"][0] + love_reward_amount, 100.0)
 	if drive["loving"][0] > drive_threshold and has_node("PetStatusIcon"):
 		get_node("PetStatusIcon").queue_free()
@@ -376,6 +377,8 @@ func show_icons() -> void:
 func _process(delta):
 	for d in drive:
 		drive[d][0] -= drive[d][1] * delta
+		
+#		print(d + " " + str(drive[d][0]) + " " + str(drive[d][1]))
 		
 		if not has_node("PetStatusIcon"):
 			show_icons()

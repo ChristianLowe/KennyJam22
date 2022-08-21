@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hatch.ogg-5b8e2e055913a928dc68e0dd84fa7bfc.oggstr"
+
+[deps]
+
+source_file="res://Interface/Sounds/Resources/hatch.ogg"
+dest_files=[ "res://.import/hatch.ogg-5b8e2e055913a928dc68e0dd84fa7bfc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
