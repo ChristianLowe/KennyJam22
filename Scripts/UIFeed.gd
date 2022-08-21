@@ -49,6 +49,7 @@ func _on_button_pressed(signal_name: String, button: TextureButton, progress_bar
 	button.set_modulate(Color.black)
 	progress_bar.show()
 	cooldown_timer.start()
+	get_parent().get_node("Audio").play_sfx("click1")
 
 func _on_ButtonPlay_pressed():
 	emit_signal("play_button_pressed")
