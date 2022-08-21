@@ -34,8 +34,8 @@ font=false
 
 [gui]
 
-theme/custom_font="res://Fonts/Kenney Mini.tres"
 common/drop_mouse_on_gui_input_disabled=true
+theme/custom_font="res://Fonts/Kenney Mini.tres"
 
 [physics]
 

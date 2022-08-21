@@ -59,6 +59,10 @@ func _ready() -> void:
 	ui.connect("play_button_pressed", self, "_on_ui_play_button_pressed")
 	ui.connect("clean_button_pressed", self, "_on_ui_clean_button_pressed")
 	ui.connect("pet_button_pressed", self, "_on_ui_pet_button_pressed")
+	
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	modulate = Color(rng.randf_range(0.0,1.0), rng.randf_range(0.0,1.0), rng.randf_range(0.0,1.0))
 
 func _spawn_heart() -> void:
 	var heart = load("res://Actors/Heart.tscn").instance()
