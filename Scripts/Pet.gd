@@ -40,21 +40,35 @@ func _ready() -> void:
 	ui.connect("play_button_pressed", self, "_on_ui_play_button_pressed")
 	ui.connect("clean_button_pressed", self, "_on_ui_clean_button_pressed")
 	ui.connect("pet_button_pressed", self, "_on_ui_pet_button_pressed")
+
+func _spawn_heart() -> void:
+	var heart = load("res://Actors/Heart.tscn").instance()
+	heart.position = $Sprite.position + Vector2(0, -120)
+	add_child(heart)
 	
+	if randi() % 2 == 0:
+		get_parent().get_node("Audio").play_sfx("happy1")
+	else:
+		get_parent().get_node("Audio").play_sfx("happy2")
+
 func _on_ui_feed_button_pressed() -> void:
+	_spawn_heart()
 	drive["hunger"][0] = min(drive["hunger"][0] + 5.0, 100.0)
-#	jump(100.0)
 	
 func _on_ui_drink_button_pressed() -> void:
+	_spawn_heart()
 	drive["thirst"][0] = min(drive["thirst"][0] + 5.0, 100.0)
 	
 func _on_ui_play_button_pressed() -> void:
+	_spawn_heart()
 	drive["boring"][0] = min(drive["boring"][0] + 5.0, 100.0)
 	
 func _on_ui_clean_button_pressed() -> void:
+	_spawn_heart()
 	drive["trashy"][0] = min(drive["trashy"][0] + 5.0, 100.0)
 	
 func _on_ui_pet_button_pressed() -> void:
+	_spawn_heart()
 	drive["loving"][0] = min(drive["loving"][0] + 5.0, 100.0)
 	
 

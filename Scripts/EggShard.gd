@@ -23,3 +23,6 @@ func _process(delta):
 	position.x += h_speed * delta
 	position.y += v_speed * delta
 	rotation += r_speed * delta
+	
+	if position.y > get_viewport().size.y * 2:
+		queue_free()
