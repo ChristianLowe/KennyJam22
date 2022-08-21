@@ -374,4 +374,6 @@ func _process(delta):
 		
 		if not has_node("PetStatusIcon"):
 			show_icons()
-			
+		
+		if drive[d][0] <= 0.0:
+			queue_free()
