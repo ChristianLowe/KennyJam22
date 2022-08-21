@@ -297,4 +297,4 @@ func set_status(new_status: int) -> void:
 func _process(delta):
 	for d in drive:
 		drive[d][0] -= drive[d][1] * delta
-		print(d + " " + str(drive[d][0]))
+		#print(d + " " + str(drive[d][0]))
