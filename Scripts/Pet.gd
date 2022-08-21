@@ -30,6 +30,31 @@ var sprite_frames_resources = [
 	"res://Resources/Pet2SpriteFrames.tres"
 ]
 
+onready var ui = get_tree().get_root().get_node('Main/UIFeed')
+
+func _ready() -> void:
+	ui.connect("feed_button_pressed", self, "_on_ui_feed_button_pressed")
+	ui.connect("drink_button_pressed", self, "_on_ui_drink_button_pressed")
+	ui.connect("play_button_pressed", self, "_on_ui_play_button_pressed")
+	ui.connect("clean_button_pressed", self, "_on_ui_clean_button_pressed")
+	ui.connect("pet_button_pressed", self, "_on_ui_pet_button_pressed")
+
+func _on_ui_feed_button_pressed() -> void:
+	pass
+	
+func _on_ui_drink_button_pressed() -> void:
+	pass
+	
+func _on_ui_play_button_pressed() -> void:
+	pass
+	
+func _on_ui_clean_button_pressed() -> void:
+	pass
+	
+func _on_ui_pet_button_pressed() -> void:
+	pass
+	
+
 func evolve(new_level: int) -> void:
 	level = new_level
 	var sprite_frames: SpriteFrames = load(sprite_frames_resources[new_level])
@@ -190,12 +215,12 @@ func jump(jump_height: float = 300.0, move: bool = false) -> void:
 	yield($FallTween,"tween_all_completed")
 	squish()
 
-func move(move_distance: float = 96.0) -> void:
-	var sprite_texture_size_x: float = 24.0
+func move(move_distance: float = 46.0) -> void:
+	var sprite_texture_size_x: float = 46.0
 	var move_to_position_x: float = clamp(
 		position.x + rand_range(-move_distance, move_distance),
 		0.0,
-		get_viewport().size.x+sprite_texture_size_x
+		get_viewport().size.x-sprite_texture_size_x
 	)
 	
 	$MoveTween.interpolate_property(

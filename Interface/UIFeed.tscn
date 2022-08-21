@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Backgrounds/BackgroundDesert.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Interface/Resources/overview.svg" type="Texture" id=2]
 [ext_resource path="res://Sprites/Statuses/status_pet.svg" type="Texture" id=3]
 [ext_resource path="res://Scripts/ButtonBar.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/UIFeed.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxFlat" id=6]
 border_color = Color( 0.356863, 0.356863, 0.356863, 0 )
@@ -36,6 +37,7 @@ region = Rect2( 676, 671, 50, 49 )
 margin_right = 616.0
 margin_bottom = 600.0
 mouse_filter = 2
+script = ExtResource( 5 )
 
 [node name="BackgroundDesert" parent="." instance=ExtResource( 1 )]
 modulate = Color( 0.792157, 0.792157, 0.792157, 1 )
@@ -149,3 +151,9 @@ texture_normal = ExtResource( 3 )
 stretch_mode = 2
 
 [node name="Tween" type="Tween" parent="ButtonBar"]
+
+[connection signal="pressed" from="ButtonBar/ButtonFeedBackground/ButtonFeed" to="." method="_on_ButtonFeed_pressed"]
+[connection signal="pressed" from="ButtonBar/ButtonDrinkBackground/ButtonDrink" to="." method="_on_ButtonDrink_pressed"]
+[connection signal="pressed" from="ButtonBar/ButtonPlayBackground/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+[connection signal="pressed" from="ButtonBar/ButtonCleanBackground/ButtonClean" to="." method="_on_ButtonClean_pressed"]
+[connection signal="pressed" from="ButtonBar/ButtonPetBackground/ButtonPet" to="." method="_on_ButtonPet_pressed"]
