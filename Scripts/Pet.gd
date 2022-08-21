@@ -11,10 +11,10 @@ enum Status {
 }
 
 var drive = {
-	"hunger": [100.0,1.0],# 0.010],
-	"thirst": [100.0,5.0],#0.015],
+	"hunger": [100.0, 0.010],
+	"thirst": [100.0, 0.015],
 	"sleepy": [100.0, 0.033],
-	"boring": [100.0, 3.0]#0.055],
+	"boring": [100.0, 0.055],
 }
 
 export var sway_amount = 10.0
