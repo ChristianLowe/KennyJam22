@@ -22,6 +22,7 @@ func _ready():
 		var p = AudioStreamPlayer.new()
 		p.name = "player_" + name
 		p.stream = load("res://Interface/Sounds/Resources/" + name + ".ogg")
+		
 		p.stream.loop = false
 		add_child(p)
 
