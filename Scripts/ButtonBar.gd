@@ -11,7 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 func pop_in():
-	var lowered = Vector2(0, 64)
+	var lowered = Vector2(0, 112)
 	var raised = Vector2(0, 0)
 	$Tween.interpolate_property(
 		self,
