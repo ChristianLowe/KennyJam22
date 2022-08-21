@@ -15,6 +15,8 @@ var drive = {
 	"thirst": [100.0, 0.015],
 	"sleepy": [100.0, 0.033],
 	"boring": [100.0, 0.055],
+	"loving": [100.0, 0.095],
+	"trashy": [100.0, 0.025]
 }
 
 export var sway_amount = 10.0
@@ -31,9 +33,6 @@ var sprite_frames_resources = [
 ]
 
 onready var ui = get_tree().get_root().get_node('Main/UIFeed')
-onready var hunger_progress_bar: TextureProgress = ui.get_node("ButtonBar/ButtonFeedBackground/ProgressBar")
-onready var thirst_progress_bar: TextureProgress = ui.get_node("ButtonBar/ButtonDrinkBackground/ProgressBar")
-onready var bored_progress_bar: TextureProgress = ui.get_node("ButtonBar/ButtonPlayBackground/ProgressBar")
 
 func _ready() -> void:
 	ui.connect("feed_button_pressed", self, "_on_ui_feed_button_pressed")
@@ -42,22 +41,9 @@ func _ready() -> void:
 	ui.connect("clean_button_pressed", self, "_on_ui_clean_button_pressed")
 	ui.connect("pet_button_pressed", self, "_on_ui_pet_button_pressed")
 	
-	initialize_progress_bar_values()
-
-func initialize_progress_bar_values() -> void:
-	hunger_progress_bar.set_max(drive["hunger"][0])
-	hunger_progress_bar.set_value(drive["hunger"][0])
-	
-	thirst_progress_bar.set_max(drive["thirst"][0])
-	thirst_progress_bar.set_value(drive["thirst"][0])
-	
-	bored_progress_bar.set_max(drive["boring"][0])
-	bored_progress_bar.set_value(drive["boring"][0])
-	
-
 func _on_ui_feed_button_pressed() -> void:
 	drive["hunger"][0] = min(drive["hunger"][0] + 5.0, 100.0)
-	jump(100.0)
+#	jump(100.0)
 	
 func _on_ui_drink_button_pressed() -> void:
 	drive["thirst"][0] = min(drive["thirst"][0] + 5.0, 100.0)
@@ -66,10 +52,10 @@ func _on_ui_play_button_pressed() -> void:
 	drive["boring"][0] = min(drive["boring"][0] + 5.0, 100.0)
 	
 func _on_ui_clean_button_pressed() -> void:
-	pass
+	drive["trashy"][0] = min(drive["trashy"][0] + 5.0, 100.0)
 	
 func _on_ui_pet_button_pressed() -> void:
-	pass
+	drive["loving"][0] = min(drive["loving"][0] + 5.0, 100.0)
 	
 
 func evolve(new_level: int) -> void:
@@ -314,7 +300,3 @@ func set_status(new_status: int) -> void:
 func _process(delta):
 	for d in drive:
 		drive[d][0] -= drive[d][1] * delta
-	
-	hunger_progress_bar.set_value(drive["hunger"][0])
-	thirst_progress_bar.set_value(drive["thirst"][0])
-	bored_progress_bar.set_value(drive["boring"][0])

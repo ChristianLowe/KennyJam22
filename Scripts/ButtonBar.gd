@@ -15,11 +15,11 @@ func _ready():
 			buttons.append(child.get_child(0))
 			
 	for button in buttons:
-		var fun = "_on_" + button.name + "_clicked"
+		var fun = "_on_" + button.get_parent().name.split("Background")[0] + "_clicked"
 		button.connect("gui_input", self, fun)
 
 func _on_button_clicked(event, button_idx):
-	if event is InputEventMouseButton and event.is_pressed():
+	if event is InputEventMouseButton and event.is_pressed() and not buttons[button_idx].is_disabled():
 		var button = buttons[button_idx]
 		var parent = button.get_parent()
 		
