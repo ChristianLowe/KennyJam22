@@ -7,6 +7,7 @@ var sfx = [
 	"happy1",
 	"happy2",
 	"hungry",
+	"hatch",
 	"needy",
 	"rollover1",
 	"rollover2",
