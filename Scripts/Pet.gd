@@ -281,10 +281,11 @@ func straighten() -> void:
 func jump(jump_height: float = 300.0, move: bool = false) -> void:
 	squish()
 	yield($SquishTween,"tween_all_completed")
+	var original_position_y: float = $Sprite.position.y
 	$JumpTween.interpolate_property(
 		$Sprite,
 		"position:y",
-		$Sprite.position.y,
+		original_position_y,
 		$Sprite.position.y-jump_height,
 		0.75,
 		Tween.TRANS_QUINT,
@@ -299,7 +300,7 @@ func jump(jump_height: float = 300.0, move: bool = false) -> void:
 		$Sprite,
 		"position:y",
 		$Sprite.position.y,
-		$Sprite.position.y+jump_height,
+		original_position_y,
 		0.25,
 		Tween.TRANS_SINE,
 		Tween.EASE_IN
