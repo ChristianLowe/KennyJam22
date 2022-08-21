@@ -31,7 +31,7 @@ export var clean_reward_amount: float = 15.0
 export var max_seconds_until_evolve: int = 60.0*10.0
 onready var seconds_until_evolve: int = max_seconds_until_evolve
 
-var drive = {
+onready var drive = {
 	"hunger": [100.0, hunger_drive_delta, Status.Hungry],
 	"thirst": [100.0, thirst_drive_delta, Status.Thirsty],
 	"sleepy": [100.0, sleepy_drive_delta, Status.Sleepy],
@@ -39,6 +39,8 @@ var drive = {
 	"loving": [100.0, loving_drive_delta, Status.NeedsLove],
 	"trashy": [100.0, trashy_drive_delta, Status.Trashy]
 }
+
+onready var evolve_progress_bar: ProgressBar = get_tree().get_root().get_node('Main/EvolveProgressBar')
 
 var drive_threshold: float = 0.75
 
@@ -60,6 +62,9 @@ func _ready() -> void:
 	ui.connect("clean_button_pressed", self, "_on_ui_clean_button_pressed")
 	ui.connect("pet_button_pressed", self, "_on_ui_pet_button_pressed")
 
+	evolve_progress_bar.set_max(max_seconds_until_evolve)
+	evolve_progress_bar.set_value(0.0)
+	
 func _spawn_heart() -> void:
 	var heart = load("res://Actors/Heart.tscn").instance()
 	heart.position = $Sprite.position + Vector2(0, -120)
@@ -70,7 +75,8 @@ func _on_JumpTimer_timeout() -> void:
 	
 func _on_GrowTimer_timeout() -> void:
 	seconds_until_evolve -= 1
-	print("seconds_until_evolve %d" % seconds_until_evolve)
+	evolve_progress_bar.set_value(max_seconds_until_evolve-seconds_until_evolve)
+#	print("seconds_until_evolve %d" % seconds_until_evolve)
 	
 	if seconds_until_evolve <= 0:
 		grow(level + 1)
@@ -367,6 +373,8 @@ func show_icons() -> void:
 func _process(delta):
 	for d in drive:
 		drive[d][0] -= drive[d][1] * delta
+		
+#		print(d + " " + str(drive[d][0]) + " " + str(drive[d][1]))
 		
 		if not has_node("PetStatusIcon"):
 			show_icons()

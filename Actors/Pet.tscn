@@ -8,6 +8,17 @@ extents = Vector2( 100, 100 )
 
 [node name="Pet" type="Area2D"]
 script = ExtResource( 2 )
+hunger_drive_delta = 0.25
+thirst_drive_delta = 0.3
+boring_drive_delta = 0.55
+loving_drive_delta = 0.65
+trashy_drive_delta = 0.25
+food_reward_amount = 30.0
+drink_reward_amount = 30.0
+pet_reward_amount = 20.0
+love_reward_amount = 20.0
+clean_reward_amount = 10.0
+max_seconds_until_evolve = 150
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
